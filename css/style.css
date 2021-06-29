@@ -245,6 +245,12 @@ h2 {
     display: block;
 }
 
+#icon {
+    margin-top: -5px;
+    margin-bottom: -15px;
+    margin-right: 10px;
+}
+
 #add-category-button {
     border: none;
     background-color: #3686ff;
