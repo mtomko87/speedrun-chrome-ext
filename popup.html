@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="css/style.css">
+        <script src="js/api.js"></script>
+        <script src="js/helpers.js"></script>
+        <script src="js/customElements.js"></script>
+    </head>
+    <body>
+
+        <div id="main" class="page">
+            <h2>Watched Categories</h2>
+            <button id="add-category-button">Add a category</button>
+            <button id="remove-category-button">Remove</button>
+            <div id="main-results" class="results"></div>
+        </div>
+
+        <div id="search" class="page">
+            <input id="search-box" autocomplete="off" spellcheck="false">
+            <button id="delete-text-button">&times</button>
+            <button id="search-back-button" class="back-button"></button>
+            <button class="home-button"></button>
+            <div id="search-results" class="results"></div>
+        </div>
+
+        <div id="categories" class="page">
+            <button id="categories-back-button" class="back-button"></button>
+            <button class="home-button"></button>
+            <h2 id="categories-header"></h2>
+            <button id="view-levels-button">Levels</button>
+            <div id="categories-results" class="results"></div>
+        </div>
+
+        <div id="levels" class="page">
+            <button id="levels-back-button" class="back-button"></button>
+            <button class="home-button"></button>
+            <h2 id="levels-header"></h2>
+            <div id="levels-results" class="results"></div>
+        </div>
+
+        <div id="level-categories" class="page">
+            <button id="level-categories-back-button" class="back-button"></button>
+            <button class="home-button"></button>
+            <h2 id="level-categories-header"></h2>
+            <div id="level-categories-results" class="results"></div>
+        </div>
+
+        <div id="notification-box"></div>
+
+        <script src="js/popup.js"></script>
+    </body>
+</html>

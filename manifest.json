@@ -1,0 +1,20 @@
+{
+    "name": "speedrun.com",
+    "description": "Easily stay up to date on new world records and top times in your favorite categories.",
+    "version": "1.0",
+    "manifest_version": 3,
+
+    "icons": {
+        "16": "assets/icon16.png",
+        "48": "assets/icon48.png",
+        "128": "assets/icon128.png"
+    },
+
+    "permissions": [
+        "storage"
+    ],
+
+    "action": {
+        "default_popup": "popup.html"
+    }
+}
