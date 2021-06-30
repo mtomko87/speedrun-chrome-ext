@@ -164,7 +164,7 @@ function loadLevelCategories(name, levelId, gameId) {
 function addCategory(gameId, levelId, categoryId, variables) {
 
     // add the category to storage
-    chrome.storage.sync.get({categories: {}}, (data) => {
+    chrome.storage.local.get({categories: {}}, (data) => {
 
         var categories = data.categories;
         if (!(gameId in categories)) categories[gameId] = [];
@@ -187,7 +187,7 @@ function addCategory(gameId, levelId, categoryId, variables) {
         };
         categories[gameId].push(newCategory);
 
-        chrome.storage.sync.set({categories: categories});
+        chrome.storage.local.set({categories: categories});
         showNotification("Category added successfully", "success");
 
         // add the category to the main page
@@ -211,13 +211,13 @@ function addCategory(gameId, levelId, categoryId, variables) {
 function removeCategory(gameId, id) {
 
     // remove category from storage
-    chrome.storage.sync.get({categories: {}}, (data) => {
+    chrome.storage.local.get({categories: {}}, (data) => {
         var categories = data.categories;
         var game = categories[gameId];
         var foundCategory = game.find(element => element.id == id);
         game.splice(game.indexOf(foundCategory), 1);
         if (game.length == 0) delete categories[gameId];
-        chrome.storage.sync.set({categories: categories});
+        chrome.storage.local.set({categories: categories});
     });
 
     // remove category from main page
@@ -238,7 +238,7 @@ function loadAllData() {
     // get the main div
     var mainResults = document.getElementById("main-results");
 
-    chrome.storage.sync.get({categories: {}}, (data) => {
+    chrome.storage.local.get({categories: {}}, (data) => {
         var categories = data.categories;
         for (const [gameId, gameCategories] of Object.entries(categories)) {
             api.get(`games/${gameId}`).then(game => {
@@ -350,12 +350,12 @@ function makeCategoryInfo(parent, gameId, category) {
  */
 function updateLeaderboard(gameId, category, runs) {
 
-    chrome.storage.sync.get({categories: {}}, (data) => {
+    chrome.storage.local.get({categories: {}}, (data) => {
         var categories = data.categories;
         var game = categories[gameId];
         var foundCategory = game.find(element => element.id == category.id);
         foundCategory.runs = runs;
-        chrome.storage.sync.set({categories: categories});
+        chrome.storage.local.set({categories: categories});
     });
 }
 

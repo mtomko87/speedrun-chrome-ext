@@ -53,7 +53,7 @@ mainPage.addEventListener("click", hideCategoryButton);
 var mainResults = document.getElementById("main-results");
 mainResults.addEventListener("scroll", hideCategoryButton);
 
-// chrome.storage.sync.clear();
+// chrome.storage.local.clear();
 
 /*
  * call main function that populates our main page
