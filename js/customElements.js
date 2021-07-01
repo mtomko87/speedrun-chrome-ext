@@ -25,7 +25,7 @@ function createCategoryInfo(levelName, categoryName, variables, time, players, l
     var element = document.createElement("div");
     element.id = id;
     element.className = "category-info";
-    element.addEventListener("click", () => {chrome.tabs.create({url: link});}); // go to sppedrun.com page on click
+    element.addEventListener("click", () => {chrome.tabs.create({url: link, active: false});}); // go to sppedrun.com page on click
     element.addEventListener("contextmenu", (e) => { // open custom context menu on right click
 
         e.preventDefault();
