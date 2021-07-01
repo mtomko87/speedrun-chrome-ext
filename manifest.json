@@ -1,7 +1,7 @@
 {
     "name": "speedrun.com",
     "description": "Easily stay up to date on new world records and top times in your favorite categories.",
-    "version": "1.0",
+    "version": "1.0.0",
     "manifest_version": 3,
 
     "icons": {
