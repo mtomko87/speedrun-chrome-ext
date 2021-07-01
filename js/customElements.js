@@ -3,10 +3,12 @@
  */
 function createGameInfo(name, gameId) {
 
+    // create the element
     var element = document.createElement("div");
     element.className = "game-info";
     element.id = gameId;
 
+    // add game title
     var h3 = document.createElement("h3");
     h3.innerHTML = name;
     element.appendChild(h3);
@@ -19,11 +21,12 @@ function createGameInfo(name, gameId) {
  */
 function createCategoryInfo(levelName, categoryName, variables, time, players, link, badge, gameId, id) {
 
+    // create the element
     var element = document.createElement("div");
     element.id = id;
     element.className = "category-info";
-    element.addEventListener("click", () => {chrome.tabs.create({url: link});});
-    element.addEventListener("contextmenu", (e) => {
+    element.addEventListener("click", () => {chrome.tabs.create({url: link});}); // go to sppedrun.com page on click
+    element.addEventListener("contextmenu", (e) => { // open custom context menu on right click
 
         e.preventDefault();
         hideCategoryButton();
@@ -39,6 +42,7 @@ function createCategoryInfo(levelName, categoryName, variables, time, players, l
         };
     });
 
+    // add text describing the category
     var categoryText = levelName ? levelName + " \u2014 " + categoryName : categoryName;
     for (const variable of variables) {
         categoryText += " (" + variable + ")";
@@ -49,15 +53,18 @@ function createCategoryInfo(levelName, categoryName, variables, time, players, l
     leftInfo.innerHTML = categoryText;
     element.appendChild(leftInfo);
 
+    // add a div for the info on the right side
     var rightDiv = document.createElement("div");
     element.appendChild(rightDiv);
 
+    // add text for WR time and players
     var rightInfo = document.createElement("p");
     rightInfo.className = "info";
     var runText = time;
     if (players.length > 0) runText += " by ";
     rightInfo.innerHTML = runText;
 
+    // add players and style according to speedrun.com data
     for (var i = 0; i < players.length; i++) {
         var span = document.createElement("span");
         span.innerHTML = players[i].name;
@@ -80,6 +87,7 @@ function createCategoryInfo(levelName, categoryName, variables, time, players, l
 
     rightDiv.appendChild(rightInfo);
 
+    // add a badge if this category has any special attributes (new, wr, top 3)
     if (badge) {
 
         var circle = document.createElement("div");
@@ -103,10 +111,12 @@ function createCategoryInfo(levelName, categoryName, variables, time, players, l
  */
 function createSearchResult(name, gameId) {
 
+    // create the element
     var element = document.createElement("div");
     element.className = "search-result";
     element.addEventListener("click", () => {loadCategories(name, gameId);});
 
+    // add text with game title
     var p = document.createElement("p");
     p.innerHTML = name;
     element.appendChild(p);
@@ -120,17 +130,21 @@ function createSearchResult(name, gameId) {
  */
 function createCategoryResult(name, variables, gameId, levelId, categoryId) {
 
+    // create the element
     var element = document.createElement("div");
     element.className = "category-result";
 
+    // add text with category name
     var p = document.createElement("p");
     p.innerHTML = name;
     element.appendChild(p);
 
+    // create a button to add this category
     var button = document.createElement("button");
     button.innerHTML = "Add";
     element.appendChild(button);
 
+    // create a select for each variable that this category has
     var selectsDiv = document.createElement("div");
     for (const variable of variables) {
         var select = document.createElement("select");
@@ -145,6 +159,7 @@ function createCategoryResult(name, variables, gameId, levelId, categoryId) {
     }
     if (selectsDiv.firstChild) element.appendChild(selectsDiv);
 
+    // when add button is clicked, gather the value of all selects and add this category
     button.addEventListener("click", () => {
         var variableChoices = {};
         for (const variable of variables) {
@@ -162,10 +177,12 @@ function createCategoryResult(name, variables, gameId, levelId, categoryId) {
  */
 function createLevelResult(name, levelId, gameId) {
     
+    // create the element
     var element = document.createElement("div");
     element.className = "search-result";
     element.addEventListener("click", () => {loadLevelCategories(name, levelId, gameId);});
 
+    // add text with level name
     var p = document.createElement("p");
     p.innerHTML = name;
     element.appendChild(p);
@@ -178,9 +195,11 @@ function createLevelResult(name, levelId, gameId) {
  */
 function createNotification(string, type) {
 
+    // create the element
     var element = document.createElement("div");
-    element.className = "notification" + (type == "success" ? "" : " error");
+    element.className = "notification" + (type == "success" ? "" : " error"); // add a class for this specific type of notification
 
+    // add text with notification content
     var p = document.createElement("p");
     p.innerHTML = string + (type == "success" ? " \u2713" : " \u2718");
     element.appendChild(p);

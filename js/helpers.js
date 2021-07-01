@@ -279,6 +279,7 @@ function makeCategoryInfo(parent, gameId, category) {
 
         const categoryName = leaderboard.category.data.name;
 
+        // get string values for all variables
         var variableStrings = [];
         for (const [variableId, valueId] of Object.entries(category.variables)) {
             const foundVariable = leaderboard.variables.data.find(element => element.id == variableId);
@@ -286,6 +287,7 @@ function makeCategoryInfo(parent, gameId, category) {
             variableStrings.push(value.label);
         }
 
+        // format the time correctly
         var timeString = "";
         if (leaderboard.runs.length > 0) {
 
@@ -314,6 +316,7 @@ function makeCategoryInfo(parent, gameId, category) {
             timeString = "no runs";
         }
 
+        // get the players for this run
         var players = [];
         if (leaderboard.runs.length > 0) {
             for (const player of leaderboard.runs[0].run.players) {
@@ -327,6 +330,7 @@ function makeCategoryInfo(parent, gameId, category) {
 
         const link = leaderboard.weblink;
 
+        // determine if this category has any new times, and if so update in storage
         var badge = null;
         var runs = [];
         for (const run of leaderboard.runs) {
