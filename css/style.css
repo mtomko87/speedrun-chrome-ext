@@ -14,6 +14,10 @@ h2 {
 
 * {
     color: #ededed;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /* firefox campatibility */
+    scrollbar-color: #2c3544 transparent;
+    scrollbar-width: thin;
 }
 
 ::-webkit-scrollbar {
@@ -103,6 +107,7 @@ h2 {
     margin-top: 5px;
     margin-bottom: 5px;
     margin-left: 10px;
+    font-size: 12px;
 }
 
 .badge {
@@ -131,6 +136,7 @@ h2 {
     margin-top: 5px;
     margin-bottom: 5px;
     font-weight: bolder;
+    font-size: 12px;
 }
 
 .results {
@@ -205,7 +211,7 @@ h2 {
 }
 
 .player-span {
-    font-weight: 800;
+    font-weight: 900;
 }
 
 .player-gradient {
@@ -255,7 +261,7 @@ h2 {
     border: none;
     background-color: #3686ff;
     height: 35px;
-    width: 130px;
+    width: 140px;
     border-radius: 30px;
     cursor: pointer;
     position: absolute;
