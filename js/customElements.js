@@ -42,6 +42,36 @@ function createCategoryInfo(levelName, categoryName, variables, time, players, l
         };
     });
 
+    // handle element dragging
+    element.draggable = true;
+
+    element.addEventListener("dragstart", (e) => {
+        categoryDrag.startDrag(id, gameId);
+    });
+
+    element.addEventListener("dragover", (e) => {
+        if (categoryDrag.dragParentId == gameId) {
+            e.dataTransfer.dropEffect = "move";
+            e.preventDefault();
+        }
+    });
+
+    element.addEventListener("drop", (e) => {
+        var dragElement = document.getElementById(categoryDrag.dragId);
+        var insertBefore = false;
+        var prevSibling = dragElement.previousSibling;
+        while (prevSibling != null) {
+            if (prevSibling == element) {
+                insertBefore = true;
+                break;
+            }
+            prevSibling = prevSibling.previousSibling;
+        }
+        if (insertBefore) dragElement.parentNode.insertBefore(dragElement, element);
+        else dragElement.parentNode.insertBefore(dragElement, element.nextSibling);
+        reorderCategories(gameId, categoryDrag.dragId, id);
+    });
+
     // add text describing the category
     var categoryText = levelName ? levelName + " \u2014 " + categoryName : categoryName;
     for (const variable of variables) {

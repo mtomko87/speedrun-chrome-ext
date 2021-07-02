@@ -111,10 +111,10 @@ h2 {
 }
 
 .badge {
-    height: 15px;
-    width: 15px;
+    height: 12px;
+    width: 12px;
     border-radius: 15px;
-    margin-top: 6px;
+    margin-top: 7px;
     margin-left: 20px;
     margin-right: 0px;
 }

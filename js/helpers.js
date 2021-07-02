@@ -396,4 +396,22 @@ function showNotification(string, type) {
     setTimeout(function() { notif.remove(); }, 2500);
 }
 
-// yn2p3085: "zqod92p1"
+/*
+ * change the order in which categories will appear on the home page
+ */
+function reorderCategories(gameId, movingId, replacedId) {
+
+    chrome.storage.local.get({categories: {}}, (data) => {
+        var categories = data.categories;
+        var game = categories[gameId];
+        var movingIndex = 0;
+        var replacedIndex = 0;
+        for (var i = 0; i < game.length; i++) {
+            if (game[i].id == movingId) movingIndex = i;
+            if (game[i].id == replacedId) replacedIndex = i;
+        }
+        console.log(movingIndex, replacedIndex);
+        game.splice(replacedIndex, 0, game.splice(movingIndex, 1)[0]);
+        chrome.storage.local.set({categories: categories});
+    });
+}

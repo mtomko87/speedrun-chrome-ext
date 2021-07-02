@@ -2,6 +2,7 @@
  * create global variables
  */
 var api = new Api();
+var categoryDrag = new CategoryDrag();
 
 /*
  * set up necessary events
