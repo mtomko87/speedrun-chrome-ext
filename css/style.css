@@ -139,6 +139,16 @@ h2 {
     font-size: 12px;
 }
 
+.category-info-loading p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    font-size: 12px;
+    color: #495770;
+    font-style: italic;
+    display: inline-block;
+}
+
 .results {
     box-sizing: border-box;
     margin-top: 15px;
@@ -316,7 +326,7 @@ h2 {
     top: 15px;
     left: 654px;
     background-color: transparent;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 #delete-text-button:hover {

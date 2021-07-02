@@ -107,6 +107,22 @@ function createCategoryInfo(levelName, categoryName, variables, time, players, l
 }
 
 /*
+ * a placeholder for a category info div for while the data is being loaded
+ */
+function createCategoryInfoLoading() {
+
+    var element = document.createElement("div");
+    element.className = "category-info-loading";
+
+    // create the "loading..." text
+    var p = document.createElement("p");
+    p.innerHTML = "Loading...";
+    element.appendChild(p);
+
+    return element;
+}
+
+/*
  * div that shows results when searching for a game
  */
 function createSearchResult(name, gameId) {

@@ -48,7 +48,7 @@ function updateSearchResults() {
 
     // get search results and append to results div
     api.get("games", {name: text}).then(games => {
-        if (searchBox.value != text) return;
+        if (searchBox.value != text) return; // if the search text has changed since we made this call, don't bother filling in the results
         for (const game of games) {
             var result = createSearchResult(game.names.international, game.id);
             searchResults.appendChild(result);
@@ -259,6 +259,10 @@ function loadAllData() {
  */
 function makeCategoryInfo(parent, gameId, category) {
 
+    // create a placeholder while we load the data
+    var placeholder = createCategoryInfoLoading();
+    parent.appendChild(placeholder);
+
     // make api call
     var data = {
         top: 3,
@@ -345,7 +349,7 @@ function makeCategoryInfo(parent, gameId, category) {
 
         // create the element and add it
         var categoryInfo = createCategoryInfo(levelName, categoryName, variableStrings, timeString, players, link, badge, gameId, category.id);
-        parent.appendChild(categoryInfo);
+        parent.replaceChild(categoryInfo, placeholder);
     });
 }
 
