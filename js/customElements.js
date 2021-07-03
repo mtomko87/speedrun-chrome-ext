@@ -13,6 +13,26 @@ function createGameInfo(name, gameId) {
     h3.innerHTML = name;
     element.appendChild(h3);
 
+    // create buttons to move up and down
+    var upButton = document.createElement("button");
+    upButton.className = "up-button";
+    element.appendChild(upButton);
+    var downButton = document.createElement("button");
+    downButton.className = "down-button";
+    element.appendChild(downButton);
+
+    upButton.addEventListener("click", () => {
+        reorderGames(gameId, "up");
+        var prevSibling = element.previousSibling;
+        if (prevSibling) element.parentElement.insertBefore(element, prevSibling);
+    });
+
+    downButton.addEventListener("click", () => {
+        reorderGames(gameId, "down");
+        var nextSibling = element.nextSibling;
+        if (nextSibling) element.parentElement.insertBefore(element, nextSibling.nextSibling);
+    });
+
     return element;
 }
 

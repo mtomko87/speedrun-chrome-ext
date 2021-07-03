@@ -49,7 +49,7 @@ for (const homeButton of homeButtons) {
 // hide 'remove category' button
 var mainPage = document.getElementById("main");
 mainPage.addEventListener("click", hideCategoryButton);
-// mainPage.addEventListener("contextmenu", hideCategoryButton);
+mainPage.addEventListener("dragstart", hideCategoryButton)
 
 var mainResults = document.getElementById("main-results");
 mainResults.addEventListener("scroll", hideCategoryButton);

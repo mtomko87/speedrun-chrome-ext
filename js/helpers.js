@@ -163,11 +163,16 @@ function loadLevelCategories(name, levelId, gameId) {
  */
 function addCategory(gameId, levelId, categoryId, variables) {
 
-    // add the category to storage
-    chrome.storage.local.get({categories: {}}, (data) => {
+    chrome.storage.local.get({categories: {}, gameOrder: []}, (data) => {
 
         var categories = data.categories;
-        if (!(gameId in categories)) categories[gameId] = [];
+        var gameOrder = data.gameOrder;
+
+        // if this is a new game add add new fields
+        if (!(gameId in gameOrder)) {
+            categories[gameId] = [];
+            gameOrder.push(gameId);
+        }
 
         // create a unique id
         var id = (levelId ? levelId : "") + categoryId;
@@ -179,6 +184,7 @@ function addCategory(gameId, levelId, categoryId, variables) {
             return;
         }
 
+        // create and add the category object
         var newCategory = {
             id: id,
             levelId: levelId,
@@ -187,7 +193,8 @@ function addCategory(gameId, levelId, categoryId, variables) {
         };
         categories[gameId].push(newCategory);
 
-        chrome.storage.local.set({categories: categories});
+        // update storage
+        chrome.storage.local.set({categories: categories, gameOrder: gameOrder});
         showNotification("Category added successfully", "success");
 
         // add the category to the main page
@@ -211,13 +218,17 @@ function addCategory(gameId, levelId, categoryId, variables) {
 function removeCategory(gameId, id) {
 
     // remove category from storage
-    chrome.storage.local.get({categories: {}}, (data) => {
+    chrome.storage.local.get({categories: {}, gameOrder: []}, (data) => {
         var categories = data.categories;
+        var gameOrder = data.gameOrder;
         var game = categories[gameId];
         var foundCategory = game.find(element => element.id == id);
         game.splice(game.indexOf(foundCategory), 1);
-        if (game.length == 0) delete categories[gameId];
-        chrome.storage.local.set({categories: categories});
+        if (game.length == 0) {
+            delete categories[gameId];
+            gameOrder.splice(gameOrder.indexOf(gameId), 1);
+        }
+        chrome.storage.local.set({categories: categories, gameOrder: gameOrder});
     });
 
     // remove category from main page
@@ -238,15 +249,27 @@ function loadAllData() {
     // get the main div
     var mainResults = document.getElementById("main-results");
 
-    chrome.storage.local.get({categories: {}}, (data) => {
+    chrome.storage.local.get({categories: {}, gameOrder: null}, (data) => {
+
         var categories = data.categories;
-        for (const [gameId, gameCategories] of Object.entries(categories)) {
+        var gameOrder = data.gameOrder;
+
+        // set default order if order hasn't been set before
+        if (gameOrder == null) {
+            gameOrder = Object.keys(categories);
+            chrome.storage.local.set({gameOrder: gameOrder});
+        }
+
+        // create an element for each game
+        for (const gameId of gameOrder) {
+            // create placeholder element to mantain order
+            var placeholder = document.createElement("div");
+            placeholder.id = "temp-" + gameId;
+            mainResults.appendChild(placeholder);
             api.get(`games/${gameId}`).then(game => {
-
                 var gameInfo = createGameInfo(game.names.international, gameId);
-                mainResults.appendChild(gameInfo);
-
-                for (const category of gameCategories) {
+                mainResults.replaceChild(gameInfo, document.getElementById("temp-" + gameId));
+                for (const category of categories[gameId]) {
                     makeCategoryInfo(gameInfo, gameId, category);
                 }
             });
@@ -410,8 +433,19 @@ function reorderCategories(gameId, movingId, replacedId) {
             if (game[i].id == movingId) movingIndex = i;
             if (game[i].id == replacedId) replacedIndex = i;
         }
-        console.log(movingIndex, replacedIndex);
         game.splice(replacedIndex, 0, game.splice(movingIndex, 1)[0]);
         chrome.storage.local.set({categories: categories});
+    });
+}
+
+function reorderGames(gameId, direction) {
+
+    chrome.storage.local.get({gameOrder: []}, (data) => {
+        var gameOrder = data.gameOrder;
+        var index = gameOrder.indexOf(gameId);
+        var newIndex = (direction == "up") ? index - 1 : index + 1;
+        if (newIndex < 0 || newIndex >= gameOrder.length) return;
+        gameOrder.splice(newIndex, 0, gameOrder.splice(index, 1)[0]);
+        chrome.storage.local.set({gameOrder: gameOrder});
     });
 }
