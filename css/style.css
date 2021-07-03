@@ -300,7 +300,7 @@ h2 {
     cursor: pointer;
     position: absolute;
     top: 15px;
-    right: 15px;
+    right: 58px;
 }
 
 #remove-category-button {
@@ -361,4 +361,69 @@ h2 {
     position: absolute;
     bottom: 15px;
     left: 15px;
+}
+
+#help-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    height: 35px;
+    width: 35px;
+    background-color: #2c3544;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+#help {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: none;
+}
+
+#help-content {
+    box-sizing: border-box;
+    position: relative;
+    height: 500px;
+    width: 600px;
+    top: 45px;
+    left: 95px;
+    background-color: #1c242c;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+#help-content h3 {
+    font-size: 20px;
+    margin: 0px;
+}
+
+#close-help-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    height: 35px;
+    width: 35px;
+    background-color: transparent;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#help-content h5 {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+#help-content p {
+    font-size: 12px;
+    margin-top: 0px;
+    margin-bottom: 15px;
 }

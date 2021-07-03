@@ -10,10 +10,11 @@
     <body>
 
         <div id="main" class="page">
+            <button id="remove-category-button">Remove</button>
             <img id="icon" src="assets/icon48.png">
             <h2>Watched Categories</h2>
             <button id="add-category-button">Add a category</button>
-            <button id="remove-category-button">Remove</button>
+            <button id="help-button">?</button>
             <div id="main-results" class="results"></div>
         </div>
 
@@ -45,6 +46,28 @@
             <button class="home-button"></button>
             <h2 id="level-categories-header"></h2>
             <div id="level-categories-results" class="results"></div>
+        </div>
+
+        <div id="help">
+            <div id="help-content">
+                <h3>How to:</h3>
+                <button id="close-help-button">&times</button>
+
+                <h5>Add a category</h5>
+                <p>Click on the "Add a category" button, and search for a game. After clicking the game you can see all its categories and add the ones you like.</p>
+
+                <h5>Go to a speedrun.com leaderboard</h5>
+                <p>Click on a category to open the full leaderboard on speedrun.com in a new tab.</p>
+
+                <h5>Remove a watched category</h5>
+                <p>Right click on the category, and then click the "Remove" button.</p>
+
+                <h5>Reorder categories</h5>
+                <p>Click and drag on a category to move it to a new position.</p>
+
+                <h5>Reorder games</h5>
+                <p>Click on the arrows next to a game title to move the game up and down in the list.</p>
+            </div>
         </div>
 
         <div id="notification-box"></div>

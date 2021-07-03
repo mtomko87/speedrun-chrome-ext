@@ -54,6 +54,20 @@ mainPage.addEventListener("dragstart", hideCategoryButton)
 var mainResults = document.getElementById("main-results");
 mainResults.addEventListener("scroll", hideCategoryButton);
 
+// help button
+var helpButton = document.getElementById("help-button");
+helpButton.addEventListener("click", () => {
+    var help = document.getElementById("help");
+    help.style.display = "block";
+});
+
+// close help buttonm
+var closeHelpButton = document.getElementById("close-help-button");
+closeHelpButton.addEventListener("click", () => {
+    var help = document.getElementById("help");
+    help.style.display = "none";
+});
+
 // chrome.storage.local.clear();
 
 /*

@@ -169,7 +169,7 @@ function addCategory(gameId, levelId, categoryId, variables) {
         var gameOrder = data.gameOrder;
 
         // if this is a new game add add new fields
-        if (!(gameId in gameOrder)) {
+        if (!gameOrder.includes(gameId)) {
             categories[gameId] = [];
             gameOrder.push(gameId);
         }
