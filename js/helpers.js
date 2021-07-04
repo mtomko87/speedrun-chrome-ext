@@ -79,8 +79,10 @@ function loadCategories(name, gameId) {
         let viewLevelsButton = document.getElementById("view-levels-button");
         if (levels.length > 0) {
             viewLevelsButton.style.display = "block";
+            categoriesHeader.className = "header-short";
             viewLevelsButton.onclick = function(){ loadLevels(name, levels, gameId) };
         } else {
+            categoriesHeader.className = "header-long";
             viewLevelsButton.style.display = "none";
         }
     });

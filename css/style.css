@@ -36,6 +36,20 @@ h2 {
     padding: 15px;
 }
 
+.header-short {
+    max-width: 560px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.header-long {
+    max-width: 660px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 .back-button {
     position: absolute;
     top: 15px;
@@ -364,20 +378,6 @@ h2 {
 #delete-text-button:hover {
     background-color: rgb(37, 45, 58);
 }
-
-/*#categories-header {
-    max-width: 570px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-#levels-header, #levels-categories-header {
-    max-width: 570px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-}*/
 
 #notification-box {
     position: absolute;
