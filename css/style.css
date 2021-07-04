@@ -111,6 +111,7 @@ h2 {
 .category-info {
     cursor: pointer;
     border-radius: 5px;
+    overflow: auto;
 }
 
 .category-info:hover {
@@ -125,6 +126,7 @@ h2 {
     float: right;
     margin-right: 10px;
     display: flex;
+    text-align: right;
 }
 
 .info {
@@ -135,9 +137,14 @@ h2 {
     font-size: 12px;
 }
 
+.left-info {
+    max-width: 550px;
+}
+
 .badge {
     height: 12px;
     width: 12px;
+    min-width: 12px;
     border-radius: 15px;
     margin-top: 7px;
     margin-left: 20px;
@@ -357,6 +364,20 @@ h2 {
 #delete-text-button:hover {
     background-color: rgb(37, 45, 58);
 }
+
+/*#categories-header {
+    max-width: 570px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#levels-header, #levels-categories-header {
+    max-width: 570px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}*/
 
 #notification-box {
     position: absolute;
