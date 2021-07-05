@@ -79,10 +79,10 @@ function loadCategories(name, gameId) {
         let viewLevelsButton = document.getElementById("view-levels-button");
         if (levels.length > 0) {
             viewLevelsButton.style.display = "block";
-            categoriesHeader.className = "header-short";
+            categoriesHeader.className = "header-short"; // make the header shorter if the levels button is visible
             viewLevelsButton.onclick = function(){ loadLevels(name, levels, gameId) };
         } else {
-            categoriesHeader.className = "header-long";
+            categoriesHeader.className = "header-long"; // make the header longer in the levels button is hidden
             viewLevelsButton.style.display = "none";
         }
     });
@@ -452,21 +452,4 @@ function reorderGames(gameId, direction) {
         gameOrder.splice(newIndex, 0, gameOrder.splice(index, 1)[0]);
         chrome.storage.local.set({gameOrder: gameOrder});
     });
-}
-
-function getTextWidth(text, font) {
-
-    let canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement("canvas"));
-    let context = canvas.getContext("2d");
-    context.font = font;
-    let metrics = context.measureText(text);
-    return metrics.width;
-};
-
-function getFont(element) {
-    return window.getComputedStyle(element, null).getPropertyValue("font");
-}
-
-function getMaxWidth(element) {
-    return window.getComputedStyle(element, null).getPropertyValue("max-width");
 }

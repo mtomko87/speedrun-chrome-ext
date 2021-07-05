@@ -114,7 +114,7 @@ function createCategoryInfo(levelName, categoryName, variables, time, players, l
     if (players.length > 0) runText += " by ";
     rightInfo.innerHTML = runText;
 
-    // add players and style according to speedrun.com data
+    // add player names and style them according to speedrun.com data
     for (let i = 0; i < players.length; i++) {
         let span = document.createElement("span");
         span.innerHTML = players[i].name;
