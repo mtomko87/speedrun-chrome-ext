@@ -125,19 +125,18 @@ h2 {
 .category-info {
     cursor: pointer;
     border-radius: 5px;
-    overflow: auto;
+    display: flex;
 }
 
-.category-info:hover {
+.category-info:hover, .category-info.selected{
     background-color: #2c3544;
 }
 
-.category-info.selected {
-    background-color: #2c3544;
+.spacer {
+    flex-grow: 1;
 }
 
-.category-info div {
-    float: right;
+.right-div {
     margin-right: 10px;
     display: flex;
     text-align: right;
@@ -149,10 +148,6 @@ h2 {
     margin-bottom: 5px;
     margin-left: 10px;
     font-size: 12px;
-}
-
-.left-info {
-    max-width: 550px;
 }
 
 .badge {
@@ -178,7 +173,7 @@ h2 {
 }
 
 .badge-text {
-    margin-left: -6px;
+    margin-left: 4px;
     margin-top: 5px;
     margin-bottom: 5px;
     font-weight: bolder;

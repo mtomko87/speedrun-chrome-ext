@@ -103,8 +103,14 @@ function createCategoryInfo(levelName, categoryName, variables, time, players, l
     leftInfo.innerHTML = categoryText;
     element.appendChild(leftInfo);
 
+    // add a spacer
+    let spacer = document.createElement("div");
+    spacer.className = "spacer";
+    element.appendChild(spacer);
+
     // add a div for the info on the right side
     let rightDiv = document.createElement("div");
+    rightDiv.className = "right-div";
     element.appendChild(rightDiv);
 
     // add text for WR time and players
@@ -135,17 +141,6 @@ function createCategoryInfo(levelName, categoryName, variables, time, players, l
         }
     }
 
-    // set the width of the right div based on the width of the category info text
-    let temp = document.createElement("p");
-    temp.className = "info left-info";
-    temp.innerHTML = categoryText;
-    document.body.appendChild(temp);
-    let infoWidth = temp.offsetWidth;
-    temp.remove();
-
-    rightDiv.style.maxWidth = 720 - infoWidth + "px";
-
-    // add the div
     rightDiv.appendChild(rightInfo);
 
     // add a badge if this category has any special attributes (new, wr, top 3)
